@@ -1,7 +1,7 @@
 const { Sequelize } = require('sequelize');
 
 const sequelize = new Sequelize(
-  'ParentConnect2_db',
+  'Pconnect_db',
   'postgres',
   '1305',
   {

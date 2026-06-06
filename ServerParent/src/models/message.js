@@ -10,7 +10,8 @@ module.exports = (sequelize, DataTypes) => {
 
     senderId: DataTypes.INTEGER,
     receiverId: DataTypes.INTEGER,
-    contenu: DataTypes.TEXT
+
+    content: DataTypes.TEXT
   });
 
   Message.associate = (models) => {

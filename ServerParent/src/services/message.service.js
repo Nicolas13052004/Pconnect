@@ -8,7 +8,7 @@ const messagesUtilisateur = async (utilisateurId) => {
 
   return await Message.findAll({
     where: {
-      destinataireId: utilisateurId
+      receiverId: utilisateurId
     },
     order: [['createdAt', 'DESC']]
   });
