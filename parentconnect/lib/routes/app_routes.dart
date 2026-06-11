@@ -12,18 +12,18 @@ import '../views/admin/users_list.dart';
 import '../views/admin/link_parent_student.dart';
 
 // TEACHER
-import '../views/teacher/teacher_dashboard.dart';
-import '../views/teacher/my_students.dart';
-import '../views/teacher/add_note.dart';
-import '../views/teacher/mark_absence.dart';
-import '../views/teacher/send_message.dart';
+import '../views/enseignant/dashboard_enseignant.dart';
+import '../views/enseignant/absences_page.dart';
+import '../views/enseignant/notes_page.dart';
+import '../views/enseignant/eleves_page.dart';
+import '../views/enseignant/messages_page.dart';
 
 // PARENT
-import '../views/parent/parent_dashboard.dart';
-import '../views/parent/child_notes.dart';
-import '../views/parent/child_absences.dart';
-import '../views/parent/messages.dart';
-import '../views/parent/annonces.dart';
+import '../views/parent/dashboard_parent.dart';
+import '../views/parent/notes_page.dart';
+import '../views/parent/enfants_page.dart';
+import '../views/parent/messages_page.dart';
+import '../views/parent/annonces_page.dart';
 
 // STUDENT
 import '../views/student/student_dashboard.dart';

@@ -1,18 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:go_router/go_router.dart';
 
-import 'utils/constants.dart';
-import 'routes/app_routes.dart';
-import 'views/auth/login_view.dart';
+import 'views/auth/login_page.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+import 'views/admin/dashboard_admin.dart';
+import 'views/parent/dashboard_parent.dart';
+import 'views/enseignant/dashboard_enseignant.dart';
+import 'views/eleve/dashboard_eleve.dart';
 
-  await Supabase.initialize(
-    url: AppConstants.supabaseUrl,
-    anonKey: AppConstants.supabaseAnonKey,
-  );
-
+void main() {
   runApp(const ParentConnectApp());
 }
 
@@ -21,14 +17,11 @@ class ParentConnectApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      title: AppConstants.appName,
+      title: 'ParentConnect',
 
-      home: const LoginView(),
-
-      // 🚀 ROUTES EXTERNES
-      routes: AppRoutes.routes,
+      routerConfig: _router,
     );
   }
 }

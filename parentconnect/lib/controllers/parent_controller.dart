@@ -1,30 +1,16 @@
-import '../services/note_service.dart';
+import '../core/services/api_service.dart';
 
 class ParentController {
-  final ParentService _service = ParentService();
 
-  // 👶 enfants
-  Future<List> getMyChildren(String parentId) async {
-    return await _service.getMyChildren(parentId);
-  }
+  final ApiService api = ApiService();
 
-  // 📝 notes
-  Future<List> getNotes(String eleveId) async {
-    return await _service.getNotes(eleveId);
-  }
+  Future getAll() => api.get("/parents");
 
-  // ⚠️ absences
-  Future<List> getAbsences(String eleveId) async {
-    return await _service.getAbsences(eleveId);
-  }
+  Future getById(int id) => api.get("/parents/$id");
 
-  // 💬 messages
-  Future<List> getMessages(String userId) async {
-    return await _service.getMessages(userId);
-  }
+  Future create(data) => api.post("/parents", data);
 
-  // 📢 annonces
-  Future<List> getAnnonces() async {
-    return await _service.getAnnonces();
-  }
+  Future update(int id, data) => api.put("/parents/$id", data);
+
+  Future delete(int id) => api.delete("/parents/$id");
 }

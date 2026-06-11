@@ -1,35 +1,27 @@
-import '../services/auth_service.dart';
-import '../services/eleve_service.dart';
-import '../models/user_model.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+import '../core/config/api_config.dart';
+import '../core/services/storage_service.dart';
 
 class AuthController {
-  final AuthService _authService = AuthService();
-  final ProfileService _profileService = ProfileService();
 
-  ProfileModel? currentUser;
+  Future<dynamic> login(String email, String password) async {
 
-  Future<String?> login(String email, String password) async {
-    try {
-      // 1. LOGIN VIA SERVICE
-      final user = await _authService.login(email, password);
+    final response = await http.post(
+      Uri.parse("${ApiConfig.baseUrl}/auth/login"),
+      headers: {"Content-Type": "application/json"},
+      body: jsonEncode({
+        "email": email,
+        "password": password
+      }),
+    );
 
-      if (user == null) return null;
+    final data = jsonDecode(response.body);
 
-      // 2. GET PROFILE
-      final profile = await _profileService.getProfile(user.id);
-
-      if (profile == null) return null;
-
-      // 3. RETURN ROLE
-      return profile['role'];
-    } catch (e) {
-      print("LOGIN ERROR: $e");
-      return null;
+    if (data["token"] != null) {
+      await StorageService.saveToken(data["token"]);
     }
-  }
 
-  Future<void> logout() async {
-    await _authService.logout();
-    currentUser = null;
+    return data;
   }
 }
